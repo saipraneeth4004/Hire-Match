@@ -16,7 +16,7 @@ const interviewReportSchema = z.object({
         answer: z.string().describe("How to answer this question, what points to cover, what approach to take etc.")
     })).describe("Technical questions that can be asked in the interview along with their intention and how to answer them"),
     behavioralQuestions: z.array(z.object({
-        question: z.string().describe("The behavioral question can be asked in the interview"),
+        question: z.string().describe("The technical question can be asked in the interview"),
         intention: z.string().describe("The intention of interviewer behind asking this question"),
         answer: z.string().describe("How to answer this question, what points to cover, what approach to take etc.")
     })).describe("Behavioral questions that can be asked in the interview along with their intention and how to answer them"),
@@ -34,47 +34,26 @@ const interviewReportSchema = z.object({
 
 async function generateInterviewReport({ resume, selfDescription, jobDescription }) {
 
-const prompt = `You are an expert technical recruiter. Analyze the candidate's profile against the job description and generate a comprehensive interview report in the EXACT JSON structure specified.
 
-Resume: ${resume}
-Self Description: ${selfDescription}
-Job Description: ${jobDescription}
+    const prompt = `Generate an interview report for a candidate with the following details:
+                        Resume: ${resume}
+                        Self Description: ${selfDescription}
+                        Job Description: ${jobDescription}
+`
 
-STRICT OUTPUT RULES:
-- matchScore: a single number between 0-100
-- technicalQuestions: array of objects, each with THREE fields:
-    * question: the actual interview question as a string
-    * intention: why the interviewer is asking this question
-    * answer: how the candidate should answer, what points to cover
-- behavioralQuestions: array of objects, each with THREE fields:
-    * question: the actual behavioral question as a string
-    * intention: why the interviewer is asking this question
-    * answer: how the candidate should answer using STAR method
-- skillGaps: array of objects, each with TWO fields:
-    * skill: name of the missing skill
-    * severity: MUST be exactly one of "low", "medium", or "high"
-- preparationPlan: array of objects, each with THREE fields:
-    * day: day number starting from 1
-    * focus: the main topic to focus on that day
-    * tasks: array of strings, each being a specific actionable task
-- title: the exact job title from the job description
-
-DO NOT flatten question and intention into a single string.
-DO NOT combine skill and severity into a single string.
-DO NOT combine day and tasks into a single string.
-Each object field must be a separate key-value pair.`; 
-    
     const response = await ai.models.generateContent({
         model: "gemini-3-flash-preview",
         contents: prompt,
         config: {
             responseMimeType: "application/json",
-            responseJsonSchema: zodToJsonSchema(interviewReportSchema),
+            responseSchema: zodToJsonSchema(interviewReportSchema),
         }
     })
 
- 
-    return   JSON.parse(response.text)
-}
+    return JSON.parse(response.text)
+
+
+} 
+
 
 module.exports = generateInterviewReport;

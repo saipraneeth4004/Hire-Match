@@ -15,6 +15,9 @@ app.use(express.json());
 const authRouter = require('./routes/auth.routes');
 app.use('/api/auth', authRouter); 
 
+const interviewRouter = require('./routes/interview.routes');
+app.use('/api/interview', interviewRouter);
+
 
 
 
