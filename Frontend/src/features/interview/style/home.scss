@@ -1,0 +1,490 @@
+// ── Variables & Palette ──────────────────────────────────────────────────────
+$bg-page:        #080a0f;
+$bg-card:        rgba(22, 27, 34, 0.7);
+$bg-glass:       rgba(28, 34, 48, 0.4);
+$bg-input:       #111622;
+$border-color:   rgba(255, 255, 255, 0.08);
+$border-accent:  rgba(255, 45, 120, 0.3);
+$text-primary:   #f0f6fc;
+$text-muted:     #8b949e;
+$accent:         #ff2d78;
+$accent-glow:    rgba(255, 45, 120, 0.5);
+$font-stack:     'Outfit', system-ui, -apple-system, sans-serif;
+
+// ── Animations ────────────────────────────────────────────────────────────────
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse-accent {
+    0% { box-shadow: 0 0 0 0 rgba($accent, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba($accent, 0); }
+    100% { box-shadow: 0 0 0 0 rgba($accent, 0); }
+}
+
+// ── Page Shell ───────────────────────────────────────────────────────────────
+.home-page {
+    width: 100%;
+    min-height: 100vh;
+    background: radial-gradient(circle at top right, #1a101f, transparent),
+                radial-gradient(circle at bottom left, #0d1221, transparent),
+                $bg-page;
+    color: $text-primary;
+    font-family: $font-stack;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1.5rem 4rem;
+    gap: 3rem;
+    animation: fadeIn 0.8s ease-out;
+}
+
+.top-nav {
+    width: 100%;
+    max-width: 1000px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: -1rem;
+
+    .user-badge {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        background: $bg-glass;
+        padding: 0.5rem 1rem;
+        border-radius: 2rem;
+        border: 1px solid $border-color;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: $text-primary;
+
+        svg { color: $accent; }
+    }
+
+    .logout-btn {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: transparent;
+        border: 1px solid $border-color;
+        color: $text-muted;
+        padding: 0.5rem 1rem;
+        border-radius: 0.75rem;
+        font-size: 0.85rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        &:hover {
+            border-color: rgba($accent, 0.4);
+            color: $accent;
+            background: rgba($accent, 0.05);
+        }
+    }
+}
+
+// ── Page Header ──────────────────────────────────────────────────────────────
+.page-header {
+    text-align: center;
+    max-width: 600px;
+
+    h1 {
+        font-size: 3rem;
+        font-weight: 800;
+        margin-bottom: 1rem;
+        letter-spacing: -0.02em;
+        line-height: 1.1;
+
+        .highlight {
+            background: linear-gradient(135deg, $accent, #ff7ba8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    }
+
+    p {
+        color: $text-muted;
+        font-size: 1.1rem;
+        line-height: 1.6;
+    }
+}
+
+// ── Main Card ─────────────────────────────────────────────────────────────────
+.interview-card {
+    width: 100%;
+    max-width: 1000px;
+    background-color: $bg-card;
+    backdrop-filter: blur(12px);
+    border: 1px solid $border-color;
+    border-radius: 1.5rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+
+    &:hover {
+        border-color: rgba($accent, 0.2);
+    }
+
+    &__body {
+        display: flex;
+        min-height: 580px;
+        
+        @media (max-width: 768px) {
+            flex-direction: column;
+        }
+    }
+
+    &__footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.25rem 2rem;
+        background: rgba(0, 0, 0, 0.2);
+        border-top: 1px solid $border-color;
+
+        .footer-info {
+            font-size: 0.85rem;
+            color: $text-muted;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+
+            &::before {
+                content: '';
+                display: block;
+                width: 6px;
+                height: 6px;
+                background-color: $accent;
+                border-radius: 50%;
+                box-shadow: 0 0 8px $accent;
+            }
+        }
+    }
+}
+
+// ── Panels ────────────────────────────────────────────────────────────────────
+.panel-divider {
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, $border-color, transparent);
+    flex-shrink: 0;
+
+    @media (max-width: 768px) {
+        width: 100%;
+        height: 1px;
+    }
+}
+
+.panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 2.5rem;
+
+    &__header {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+
+        h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: $text-primary;
+            margin: 0;
+            flex: 1;
+        }
+    }
+
+    &__icon {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: $bg-glass;
+        border: 1px solid $border-color;
+        border-radius: 0.75rem;
+        color: $accent;
+    }
+
+    &__textarea {
+        flex: 1;
+        width: 100%;
+        background-color: $bg-input;
+        border: 1px solid $border-color;
+        border-radius: 1rem;
+        padding: 1.25rem;
+        color: $text-primary;
+        font-family: inherit;
+        font-size: 0.95rem;
+        resize: none;
+        outline: none;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        line-height: 1.6;
+
+        &::placeholder {
+            color: $text-muted;
+        }
+
+        &:focus {
+            border-color: rgba($accent, 0.5);
+            box-shadow: 0 0 0 4px rgba($accent, 0.1);
+            background-color: lighten($bg-input, 2%);
+        }
+
+        &--short {
+            flex: unset;
+            height: 140px;
+        }
+    }
+}
+
+// ── Badges ────────────────────────────────────────────────────────────────────
+.badge {
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.25rem 0.75rem;
+    border-radius: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+
+    &--required {
+        background: rgba($accent, 0.15);
+        color: $accent;
+        border: 1px solid rgba($accent, 0.3);
+    }
+
+    &--best {
+        background: linear-gradient(135deg, rgba($accent, 0.2), rgba(#4a90e2, 0.2));
+        color: #fff;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+}
+
+// ── Dropzone ──────────────────────────────────────────────────────────────────
+.dropzone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 2.5rem 1.5rem;
+    background-color: $bg-input;
+    border: 2px dashed $border-color;
+    border-radius: 1.25rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &--filled {
+        border-style: solid;
+        border-color: rgba($accent, 0.4);
+        background-color: rgba($accent, 0.03);
+        cursor: default;
+
+        &:hover {
+            transform: none;
+            background-color: rgba($accent, 0.03);
+        }
+    }
+
+    &__icon {
+        color: $accent;
+        filter: drop-shadow(0 0 8px rgba($accent, 0.3));
+    }
+
+    &__title {
+        font-size: 1rem;
+        font-weight: 600;
+        margin: 0;
+    }
+
+    &__subtitle {
+        font-size: 0.85rem;
+        color: $text-muted;
+        margin: 0;
+    }
+
+    .file-info {
+        display: flex;
+        align-items: center;
+        gap: 1.25rem;
+        width: 100%;
+        animation: fadeIn 0.4s ease-out;
+
+        &__icon {
+            width: 48px;
+            height: 48px;
+            background: rgba($accent, 0.1);
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        &__meta {
+            flex: 1;
+            text-align: left;
+
+            .file-name {
+                font-size: 0.95rem;
+                font-weight: 700;
+                color: $text-primary;
+                margin: 0 0 0.25rem 0;
+                word-break: break-all;
+            }
+
+            .change-file-btn {
+                background: none;
+                border: none;
+                padding: 0;
+                font-size: 0.8rem;
+                font-weight: 600;
+                color: $accent;
+                text-decoration: underline;
+                cursor: pointer;
+                opacity: 0.8;
+                transition: opacity 0.2s;
+
+                &:hover {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
+
+// ── Info Box ──────────────────────────────────────────────────────────────────
+.info-box {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
+    background: rgba(74, 144, 226, 0.1);
+    border: 1px solid rgba(74, 144, 226, 0.2);
+    border-radius: 1rem;
+
+    &__icon {
+        color: #4a90e2;
+    }
+
+    p {
+        margin: 0;
+        font-size: 0.85rem;
+        color: #8ab4f8;
+        line-height: 1.4;
+
+        strong {
+            color: $text-primary;
+        }
+    }
+}
+
+// ── Generate Button ───────────────────────────────────────────────────────────
+.generate-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.85rem 2rem;
+    background: linear-gradient(135deg, $accent 0%, #ff4d94 100%);
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 0.75rem;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba($accent, 0.3);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    &:hover {
+        transform: translateY(-3px) scale(1.02);
+        box-shadow: 0 15px 30px rgba($accent, 0.4);
+    }
+
+    &:active {
+        transform: translateY(0) scale(0.98);
+    }
+}
+
+// ── Recent Reports ────────────────────────────────────────────────────────────
+.recent-reports {
+    width: 100%;
+    max-width: 1000px;
+    margin-top: 1rem;
+
+    h2 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+    }
+
+    .reports-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1.25rem;
+        padding: 0;
+        list-style: none;
+    }
+
+    .report-item {
+        background-color: $bg-card;
+        border: 1px solid $border-color;
+        border-radius: 1.25rem;
+        padding: 1.5rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        &:hover {
+            transform: translateY(-5px);
+            border-color: rgba($accent, 0.3);
+            background-color: $bg-glass;
+        }
+
+        h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin: 0 0 0.5rem 0;
+        }
+
+        .report-meta {
+            font-size: 0.85rem;
+            color: $text-muted;
+            margin-bottom: 1rem;
+        }
+
+        .match-score {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.35rem 0.75rem;
+            background: rgba($accent, 0.1);
+            color: $accent;
+            border-radius: 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            
+            &.score--high { color: #3fb950; background: rgba(63, 185, 80, 0.1); }
+            &.score--mid { color: #f5a623; background: rgba(245, 166, 35, 0.1); }
+            &.score--low { color: #ff4d4d; background: rgba(255, 77, 77, 0.1); }
+        }
+    }
+}
+
+// ── Loading Screen ────────────────────────────────────────────────────────────
+.loading-screen {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: $bg-page;
+
+    h1 {
+        font-size: 2rem;
+        background: linear-gradient(135deg, #fff, $text-muted);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: pulse-accent 2s infinite;
+    }
+}
