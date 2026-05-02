@@ -1,59 +1,85 @@
-# 🚀 Hire Match (Ongoing Project)
 
-## 📌 Current Focus
+# 🚀 Hire Match – AI Resume Analyzer & Interview Assistant
 
-⚠️ This project is in its early stage.
-Right now, I am building the **backend foundation** while planning to integrate **Generative AI capabilities** in later stages.
+## 📌 Overview
 
----
+**Hire Match** is an AI-powered system that analyzes resumes, evaluates them against job descriptions, and helps candidates prepare through **personalized interview questions and targeted improvement plans**.
 
-## 💡 Problem Statement (Main Focus)
-
-The hiring process today is inefficient and often frustrating:
-
-* Candidates apply to multiple jobs but rarely get matched with the right opportunities
-* Recruiters receive a large number of irrelevant applications
-* Most platforms act only as **job boards**, lacking intelligent matching
-
-👉 **Core Objective:**
-To build a system that not only manages job data but evolves into an **intelligent hiring platform**.
+It is designed to bridge the gap between **candidate skills and job requirements** using intelligent insights.
 
 ---
 
-## 🤖 GenAI Integration (Planned)
+## 💡 Problem Statement
 
-I plan to apply my **Generative AI skills** to enhance this system by:
+* Candidates don’t know how well their resume matches a job
+* No clear visibility into **skill gaps**
+* Lack of structured preparation for interviews
+* Generic preparation instead of **role-specific readiness**
 
-* Analyzing resumes and extracting key skills
-* Comparing candidate profiles with job descriptions
-* Generating **match scores and improvement suggestions**
-* Providing AI-driven insights for better hiring decisions
-
----
-
-## 🎯 What I’m Doing Now
-
-* Setting up backend architecture (MVC pattern)
-* Building user-related APIs
-* Designing scalable database structure
-* Preparing the system for future AI integration
+👉 **Goal:**
+To build a system that provides **resume scoring, interview preparation, and actionable learning guidance**.
 
 ---
 
-## ⚙️ Current Progress
+## 🤖 Core Features
 
-* [x] Project setup
-* [x] Server configuration
-* [x] Database connection
-* [x] User registration API
-* [ ] Login API (in progress)
+### 📊 Resume Scoring
+
+* Analyzes resume against a job description
+* Generates a **match score** based on skills and relevance
+
+### 🧠 Skill Gap Analysis
+
+* Identifies missing or weak skills
+* Highlights areas that need improvement
+
+### 🎯 Interview Question Generator
+
+* Generates **technical questions** based on required skills
+* Generates **behavioral questions** tailored to the role
+
+### 📅 7-Day Preparation Plan
+
+* Creates a **personalized learning roadmap**
+* Focuses on closing identified skill gaps efficiently
+
+### 🔐 Authentication System
+
+* Secure user registration and login
 
 ---
 
-## 🔄 Note
+## 🛠️ Tech Stack
 
-This project is being developed step-by-step with a focus on:
+* **Backend:** Node.js, Express.js
+* **Database:** MongoDB
+* **Architecture:** MVC
+* **AI:** Generative AI (for analysis, scoring, and content generation)
 
-* Strong backend fundamentals
-* Problem-first approach
-* Gradual integration of **AI-powered features**
+---
+
+## 📊 Project Status
+
+✅ Resume Analysis Engine
+✅ Job Description Matching
+✅ AI Interview Question Generation
+✅ Skill Gap Detection
+✅ 7-Day Smart Preparation Plan
+✅ Backend APIs & Authentication
+
+---
+
+## 🎯 Key Highlights
+
+* Built a **real-world problem-solving AI application**
+* Combines **resume analysis + interview prep in one system**
+* Uses **Generative AI for dynamic and personalized output**
+* Designed with **scalable backend architecture (MVC)**
+
+---
+
+
+## 📎 Vision
+
+To evolve into a **complete AI career assistant** that not only evaluates candidates but also **guides them step-by-step to crack their target job**.
+
