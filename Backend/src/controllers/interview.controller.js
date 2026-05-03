@@ -1,6 +1,6 @@
 const pdf = require('pdf-parse'); // Library to extract text from PDF
 const generateInterviewReport = require('../services/ai.service'); // AI service to generate report
-const InterviewReportModel = require('../models/interviewreport.model'); // Mongoose model
+const InterviewReportModel = require('../models/interviewReport.model'); // Mongoose model
 
 // Controller to generate interview report using AI
 async function generateInterviewReportController(req, res) { 
